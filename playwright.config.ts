@@ -1,0 +1,53 @@
+import { defineConfig} from '@playwright/test';
+
+/**
+ * See https://playwright.dev/docs/test-configuration.
+ */
+export default defineConfig({
+  testDir: './tests',
+  /* Run tests in files serially, not in parallel */
+  fullyParallel: true,
+  /* Fail the build on CI if you accidentally left test.only in the source code. */
+  forbidOnly: !!process.env.CI,
+  /* Retry on CI only */
+  retries: process.env.CI ? 2 : 0,
+  /* Run only one worker (disable parallel tests) */
+  /* Reporter to use. See https://playwright.dev/docs/test-reporters */
+  reporter: [['html', { open: 'never' }]],
+  /* Shared settings for all the projects below */
+  use: {
+    /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
+   storageState: 'storageState.json',
+    // Other use configurations...
+    headless: false,
+    ignoreHTTPSErrors: true,
+    trace: 'on-first-retry',
+  },
+
+  /* Configure projects for major browsers */
+  projects: [
+    // {
+    //   name: 'chromium',
+    //   use: { ...devices['Desktop Chrome'] },
+    // },
+    {
+      name: 'firefox',
+      use: {
+        browserName: 'firefox',
+      },
+    },
+    // You can enable Safari or other browsers later if needed
+    // {
+    //   name: 'webkit',
+    //   use: { ...devices['Desktop Safari'] },
+    // },
+  ],
+
+  /* Run your local dev server before starting the tests (optional) */
+  // webServer: {
+  //   command: 'npm run start',
+  //   url: 'http://localhost:3000',
+  //   reuseExistingServer: !process.env.CI,
+  // },
+});
+
