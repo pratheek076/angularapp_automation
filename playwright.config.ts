@@ -1,13 +1,12 @@
-import { defineConfig} from '@playwright/test';
+import { defineConfig, devices } from '@playwright/test';
 
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
   testDir: './tests',
-  timeout: 150000,
   /* Run tests in files serially, not in parallel */
-  fullyParallel: true,
+  fullyParallel: false,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
@@ -20,17 +19,21 @@ export default defineConfig({
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
    //storageState: 'storageState.json',
     // Other use configurations...
-    headless: true,
+    headless: process.env.CI ? true : false,
     ignoreHTTPSErrors: true,
     trace: 'on-first-retry',
   },
 
   /* Configure projects for major browsers */
   projects: [
-    // {
-    //   name: 'chromium',
-    //   use: { ...devices['Desktop Chrome'] },
-    // },
+    {
+      name: 'chromium',
+      use: {
+         ...devices['Desktop Chrome'],
+        viewport: null,
+        deviceScaleFactor: undefined,
+       },
+    },
     {
       name: 'firefox',
       use: {
@@ -38,11 +41,6 @@ export default defineConfig({
         viewport: null,
       },
     },
-    // You can enable Safari or other browsers later if needed
-    // {
-    //   name: 'webkit',
-    //   use: { ...devices['Desktop Safari'] },
-    // },
   ],
 
   /* Run your local dev server before starting the tests (optional) */

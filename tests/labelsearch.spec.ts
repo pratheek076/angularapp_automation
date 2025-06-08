@@ -3,9 +3,14 @@ import { test, expect } from '@playwright/test';
 test.describe('Label Architecture Database - Firefox Tests', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('https://rb-wam.bosch.com/dgs-ladb/05-D/labelsearch/#/');
+    const isLoginPage = (await page.title()).toLowerCase().includes('login') &&
+                    await page.locator('input[name="username"]').count() > 0;
+    if(isLoginPage)
+    {
     await page.locator('input[name="username"]').fill('tgg3kor');
     await page.locator('input[name="password"]').fill('Bangalore123@#$');
     await page.getByRole('button', { name: 'Login' }).click();
+    } 
   });
 
   test('Page title should contain "labelsearch"', async ({ page }) => {
