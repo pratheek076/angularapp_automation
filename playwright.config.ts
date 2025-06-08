@@ -20,7 +20,7 @@ export default defineConfig({
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
    //storageState: 'storageState.json',
     // Other use configurations...
-    headless: false,
+    headless: true,
     ignoreHTTPSErrors: true,
     trace: 'on-first-retry',
   },
