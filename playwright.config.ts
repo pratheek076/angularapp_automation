@@ -5,6 +5,7 @@ import { defineConfig} from '@playwright/test';
  */
 export default defineConfig({
   testDir: './tests',
+  timeout: 150000,
   /* Run tests in files serially, not in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -17,7 +18,7 @@ export default defineConfig({
   /* Shared settings for all the projects below */
   use: {
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-   storageState: 'storageState.json',
+   //storageState: 'storageState.json',
     // Other use configurations...
     headless: false,
     ignoreHTTPSErrors: true,
@@ -34,6 +35,7 @@ export default defineConfig({
       name: 'firefox',
       use: {
         browserName: 'firefox',
+        viewport: null,
       },
     },
     // You can enable Safari or other browsers later if needed
