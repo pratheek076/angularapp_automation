@@ -5,6 +5,7 @@ import { defineConfig, devices } from '@playwright/test';
  */
 export default defineConfig({
   testDir: './tests',
+  timeout: 90000,
   /* Run tests in files serially, not in parallel */
   fullyParallel: false,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -29,9 +30,12 @@ export default defineConfig({
     {
       name: 'chromium',
       use: {
-         ...devices['Desktop Chrome'],
+        browserName: 'chromium',
+         //...devices['Desktop Chrome'],
+             launchOptions: {
+      args: ['--start-maximized'], 
+      },
         viewport: null,
-        deviceScaleFactor: undefined,
        },
     },
     {
