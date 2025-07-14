@@ -3,13 +3,23 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test:suite1": "npx playwright test tests/labelsearch_testsuite1.spec.ts",
+    "test:suite2": "npx playwright test tests/labelsearch_testsuite2.spec.ts",
+    "test:chrome": "npx playwright test --project=chromium",
+    "test:firefox": "npx playwright test --project=firefox",
+    "test1:chrome": "npx playwright test tests/labelsearch_testsuite1.spec.ts --project=chromium",
+    "test1:firefox": "npx playwright test tests/labelsearch_testsuite1.spec.ts --project=firefox",
+    "test2:chrome": "npx playwright test tests/labelsearch_testsuite2.spec.ts --project=chromium",
+    "test2:firefox": "npx playwright test tests/labelsearch_testsuite2.spec.ts --project=firefox"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@playwright/test": "^1.52.0",
     "@types/node": "^22.15.29",
+    "dotenv": "^17.0.1",
     "tsx": "^4.19.4"
   }
 }
