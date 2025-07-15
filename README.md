@@ -9,3 +9,5 @@
 4) npm run test2:firefox -> To test in firefox browser.
 5) labelsearch_testsuite2.spec.ts -> Contains the test cases for Labelsearch application.
 6) labelsearch_testsuite1.spec.ts -> Contains the sample test cases.
+# To open HTML Report of last test run
+npx playwright show-report
